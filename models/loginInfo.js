@@ -3,24 +3,24 @@ const mongoose = require('mongoose');
 const loginInfoSchema = new mongoose.Schema({
   name: {
     type: String,
-    require: true
+    required: true
   },
   address: {
     type: String,
-    require: true
+    required: true
   },
   phone: {
     type: Number,
-    require: true
+    required: true
   },
   username: {
     type: String,
-    require: true
+    required: true
   },
   password: {
     type: String,
-    require: true
+    required: true
   },
 });
 
-module.exports = mongoose.model('LoginInfo', loginInfoSchema);
+module.exports = mongoose.model('loginInfo', loginInfoSchema);
