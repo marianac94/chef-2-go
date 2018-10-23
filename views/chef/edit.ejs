@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h1>Edit page</h1>
+
+    <form action="/chef/<%=chef.id%>?_method=PUT" method="POST"><br/>
+
+      Profile Image: <input type="text" value="<%=chef.profileImage%>"/><br/>
+      Name: <input type="text" value="<%=chef.name%>"/><br/>
+      Years of Experience: <input type="text" value="<%=chef.years%>"/><br/>
+      Welcome Saying: <input type="text" value="<%=chef.description%>"/><br/>
+      Starter: <input type="text" value="<%=chef.starter%>"/><br/>
+      Main: <input type="text" value="<%=chef.main%>"/><br/>
+      Dessert: <input type="text" value="<%=chef.dessert%>"/><br/>
+      Drinks: <input type="text" value="<%=chef.drink%>"/><br/>
+      <input type="submit" name="" value="Submit Changes"/>
+
+    </form>
+
+    <footer>
+      © all rights reserved
+    </footer>
+  </body>
+</html>
