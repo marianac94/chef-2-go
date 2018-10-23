@@ -14,6 +14,15 @@
 join our team!</a>
     </button>
 
+    <ul>
+      <% for(let i = 0; i < chef.length; i++) { %>
+
+        <img src="<%=chef[i].profileImage%>">
+        <a href="/chef/<%=chef[i]._id%>"><%=chef[i].name%></a>
+
+      <%}%>
+    </ul>
+
   <footer>
     © all rights reserved
   </footer>

@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const User = require('../models/user');
-const Chef = require('../models/chef');
+// const Chef = require('../models/chef');
 
 // index route
 router.get('/', async (req, res) => {
@@ -22,6 +22,17 @@ router.get('/new', async (req, res) => {
     res.send(err)
   }
 });
+
+router.get('/:id', async (req, res) => {
+  try {
+    const findUser = await User.findById(req.params.id)
+      res.render('user/index.ejs', {
+        chef: findChef
+      })
+  } catch(err) {
+    res.send(err)
+  }
+})
 
 
 

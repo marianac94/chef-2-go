@@ -3,8 +3,10 @@ const router  = express.Router();
 const Chef = require('../models/chef');
 const User = require('../models/user');
 
+
 // index route
 router.get('/', async (req, res) => {
+  console.log('h2');
   try {
     const foundChef = await Chef.find({});
     res.render('chef/index.ejs', {
@@ -26,6 +28,8 @@ router.get('/new', async (req, res) => {
     res.send(err)
   }
 });
+
+
 
 // giving an id to the chef
 router.get('/:id', async (req, res) => {
@@ -77,8 +81,6 @@ router.put('/:id', async (req, res) => {
     console.log(req.body);
   try {
     const updatedChef = await Chef.findByIdAndUpdate(req.params.id, req.body)
-    console.log(req.params.id);
-    console.log(req.body);
       res.render('/chef', {
         chef: updatedChef
       })

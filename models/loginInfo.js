@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const loginInfoSchema = new mongoose.Schema({
+const loginSchema = new mongoose.Schema({
   name: {
     type: String,
     require: true
@@ -23,4 +23,4 @@ const loginInfoSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('LoginInfo', loginInfoSchema);
+module.exports = mongoose.model('Login', loginSchema);

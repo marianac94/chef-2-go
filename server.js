@@ -3,6 +3,7 @@ const app            = express();
 const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
 const session        = require('express-session');
+const Chef = require('./models/chef');
 require('./db/db');
 
 
@@ -25,10 +26,18 @@ app.use('/user', chefController)
 app.use('/newChef', newChefController);
 
 
-app.get('/', (req, res) => {
-  res.render('index.ejs');
+// show all chefs displayed in the index
+app.get('/', async (req, res) => {
+  console.log('h1');
+  try {
+    const foundChefs = await Chef.find({});
+    res.render('index.ejs', {
+      chef: foundChefs
+    });
+  } catch(err){
+    res.send(err);
+  }
 });
-
 
 
 app.listen(3000,() =>{
