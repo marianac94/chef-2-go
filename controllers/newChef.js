@@ -1,6 +1,6 @@
 const express  = require('express');
 const router   = express.Router();
-const LoginInfo    = require('../models/loginInfo');
+const LoginInfo    = require('../models/LoginInfo');
 const bcrypt = require('bcrypt');
 
 const bodyParser     = require('body-parser');
@@ -8,15 +8,18 @@ const methodOverride = require('method-override');
 const session        = require('express-session');
 
 
+
 router.get('/login',(req, res) =>{
-    console.log(req.session);
+  const message = req.session.message;
+  delete req.session.message;
   res.render('newChef/login.ejs', {
-    message: req.session.message
+    message: message
   });
 });
 
 
 router.post('/register', async (req, res) => {
+  try {
     // going to store our password in variable
     const password      = req.body.password;
     // create the hash for password
@@ -25,20 +28,27 @@ router.post('/register', async (req, res) => {
 
     // Create an object to put into our database into the User Model
     const chefEntry     = {};
-    chefEntry.name      = req.body.name;
+    chefEntry.name  = req.body.name;
     chefEntry.address   = req.body.address;
     chefEntry.phone     = req.body.phone;
-    chefEntry.username  = req.body.username;
+    chefEntry.username     = req.body.username;
     chefEntry.password  = passwordHash;
 
     const chef = await LoginInfo.create(chefEntry);
     console.log(chef);
+
     // initializing the session
     // req.session.username = req.body.username;
     req.session.logged  = true;
     req.session.message = '';
     // *************** work on it later as chef
     res.redirect('/chef/new');
+    // res.redirect('/chef');
+  } catch (err) {
+    res.redirect('/newChef/login');
+    console.log(err);
+  }
+
 });
 
 
@@ -52,21 +62,36 @@ router.post('/login', async (req, res) =>{
       // if the user exists use the bcrypt compare password
       if(bcrypt.compareSync(req.body.password, foundChef.password)){
         req.session.logged = true;
-        // ********* use later to redirect to chef profile
         res.redirect('/chef');
       } else {
         req.session.message = 'Username or password is wrong';
         res.redirect('/newChef/login')
-      } // end of foundUser
+      }
     } else {
-      // req.session.message = 'Username or password is wrong';
-      res.session.message = 'Username or password is wrong';
-      res.redirect('/newChef/login');
+      req.session.message = 'Username or password is wrong';
+      res.redirect('/newChef/login')
     }
+
   } catch (err) {
-    res.send(err);
+    // res.send(err);
+    // res.status(err, body).send(body);
+    // res.status(err);
+    req.session.message = 'Username or password is wrong';
+    res.redirect('/newChef/login');
   }
+
 });
+
+// router.get('/logout', (req, res) =>{
+//   req.session.destroy((err) =>{
+//     if(err){
+//       res.send(err);
+//     } else {
+//       res.redirect('/chef/login');
+//     }
+//   })
+// })
+
 
 
 module.exports = router;
