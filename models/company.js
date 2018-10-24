@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Chef = require('./chef');
 
 const companySchema = new mongoose.Schema({
   name: String,
@@ -6,6 +7,7 @@ const companySchema = new mongoose.Schema({
   date: String,
   time: Number,
   payment: Number,
+  chef: [Chef.schema]
 });
 
 module.exports = mongoose.model('Company', companySchema);

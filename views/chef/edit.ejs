@@ -8,17 +8,20 @@
 
     <h1>Edit page</h1>
 
-    <form action="/chef/<%=chef.id%>?_method=PUT" method="POST"><br/>
+    <form action="/chef/<%=chef.id%>?_method=PUT" method="POST">
 
-      Profile Image: <input type="text" value="<%=chef.profileImage%>"/><br/>
-      Name: <input type="text" value="<%=chef.name%>"/><br/>
-      Years of Experience: <input type="text" value="<%=chef.years%>"/><br/>
-      Welcome Saying: <input type="text" value="<%=chef.description%>"/><br/>
-      Starter: <input type="text" value="<%=chef.starter%>"/><br/>
-      Main: <input type="text" value="<%=chef.main%>"/><br/>
-      Dessert: <input type="text" value="<%=chef.dessert%>"/><br/>
-      Drinks: <input type="text" value="<%=chef.drink%>"/><br/>
-      <input type="submit" name="" value="Submit Changes"/>
+    <ul>
+      Profile Image: <input type="text" name="profileImage" value="<%=chef.profileImage%>"><br/>
+      Name: <input type="text" name="name" value="<%=chef.name%>"><br/>
+      Years of Experience: <input type="text" name="years" value="<%=chef.years%>"><br/>
+      Welcome Saying: <input type="text" name="description" value="<%=chef.description%>"><br/>
+      Starter: <input type="text" name="starter" value="<%=chef.starter%>"><br/>
+      Main: <input type="text" name="main" value="<%=chef.main%>"><br/>
+      Dessert: <input type="text" name="dessert" value="<%=chef.dessert%>"><br/>
+      Drinks: <input type="text" name="drink" value="<%=chef.drink%>"><br/>
+
+      <input type="submit" value="Submit Changes">
+    </ul>
 
     </form>
 

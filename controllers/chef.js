@@ -1,6 +1,7 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const Chef = require('../models/chef');
+const login = require('../models/loginInfo')
 
 
 // index route
@@ -12,7 +13,7 @@ router.get('/', async (req, res) => {
       chef: foundChef
     });
 
-  } catch(err){
+  } catch (err) {
     res.send(err);
   }
 });
@@ -23,28 +24,47 @@ router.get('/new', async (req, res) => {
   try {
 
     const allChef = await Chef.find();
-      res.render('chef/new.ejs', {
-        chef: allChef
-      });
+    res.render('chef/new.ejs', {
+      chef: allChef
+    });
 
-  } catch(err) {
+  } catch (err) {
     res.send(err)
   }
-
-
 });
 
 
 // giving an id to the chef
+// router.get('/:id', async (req, res) => {
+//   try {
+//
+//     const findChef = await login.findById(req.params.id);
+//     // const findList = await Chef.findOne({'_id': req.params.id});
+//     //   console.log(findChef);
+//     //   console.log(findList);
+//     // const [findChef, findList] =
+//     // Promise.all([findChef, findList]);
+//
+//     res.render('chef/show.ejs', {
+//       login: findChef
+//       // chef: findList
+//     });
+//
+//   } catch (err) {
+//     res.send(err)
+//   }
+// });
+// find chef by id when login (giving an id the minute he/she register into the page)
 router.get('/:id', async (req, res) => {
   try {
-    const findChef = Chef.findOne({'chef._id': req.params.id});
-    const foundChef = await Promise.all([findChef]);
 
-      res.render('chef/index.ejs', {
-        chef: foundChef
-      });
-  } catch(err){
+    const findChef = await login.findById(req.params.id);
+    res.render('chef/show.ejs', {
+      chef: findChef
+    });
+
+  } catch(err) {
+    console.log(err);
     res.send(err)
   }
 });
@@ -53,9 +73,11 @@ router.get('/:id', async (req, res) => {
 // posting the new chef in the index
 router.post('/', async (req, res) => {
   try {
+
     const createdChef = await Chef.create(req.body)
-      res.redirect('/chef')
-  } catch(err){
+    res.redirect('/chef')
+
+  } catch (err) {
     res.send(err)
   }
 });
@@ -65,25 +87,13 @@ router.post('/', async (req, res) => {
 router.get('/:id/edit', async (req, res) => {
   try {
 
-    const foundChef = await Chef.findById(req.params.id)
-      res.render('chef/edit.ejs', {
-        chef: foundChef
-      });
+    const findChef = await login.findById(req.params.id);
+    console.log(findChef, 'edit works');
+    res.render('chef/edit.ejs', {
+      chef: findChef
+    });
 
-  } catch(err){
-    res.send(err)
-  }
-});
-
-
-// creating the delete route
-router.delete('/:id', async (req, res) => {
-  try {
-
-    const foundChef = await Chef.findByIdAndRemove(req.params.id)
-      res.redirect('/chef');
-
-  } catch(err){
+  } catch (err) {
     res.send(err)
   }
 });
@@ -93,12 +103,24 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
 
-    const updatedChef = await Chef.findByIdAndUpdate(req.params.id, req.body)
-      res.render('/chef', {
-        chef: updatedChef
-      });
+    const updateChef = await login.findOneAndUpdate(req.params.id, req.body);
+    console.log(updateChef, 'id works');
+    res.redirect('/chef/' + updateChef._id);
 
-  } catch(err) {
+  } catch (err) {
+    res.send(err)
+  }
+});
+
+
+// creating the delete route
+router.delete('/:id', async (req, res) => {
+  try {
+
+    const deleteChef = await Chef.findByIdAndRemove(req.params.id)
+    res.redirect('/chef');
+
+  } catch (err) {
     res.send(err)
   }
 });

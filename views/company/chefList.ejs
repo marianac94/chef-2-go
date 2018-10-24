@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <main>
+      <ul>
+
+      <h1>Profile of Chef <%=chef.name%></h1>
+        <a href="/">Home</a> <br/>
+        <a href="/chef">Profiles</a> <br/>
+
+
+         <img src="<%=chef.profileImage%>"/>
+
+          <h1>hi, Im <%=chef.name%></h1>
+          <p>I have <%=chef.years%> years of experience</p> <br/>
+          <p><%=chef.description%></p> <br/>
+
+          <h1>menu</h1>
+          <h4>
+            Starter:
+            <%=chef.starter%>
+          </h4>
+          <h4>
+            Main:
+            <%=chef.main%>
+          </h4>
+          <h4>
+            Dessert:
+            <%=chef.dessert%>
+          </h4>
+          <h4>
+            Drinks:
+            <%=chef.drink%>
+          </h4>
+
+      </ul>
+
+      <footer>
+        © all rights reserved
+      </footer>
+
+    </main>
+  </body>
+</html>

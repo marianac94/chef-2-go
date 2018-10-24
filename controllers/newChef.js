@@ -1,6 +1,6 @@
 const express  = require('express');
 const router   = express.Router();
-const LoginInfo    = require('../models/LoginInfo');
+const LoginInfo    = require('../models/loginInfo');
 const bcrypt = require('bcrypt');
 
 const bodyParser     = require('body-parser');
@@ -42,7 +42,7 @@ router.post('/register', async (req, res) => {
     req.session.logged  = true;
     req.session.message = '';
     // *************** work on it later as chef
-    res.redirect('/chef/new');
+    res.redirect('/chef');
     // res.redirect('/chef');
   } catch (err) {
     res.redirect('/newChef/login');
@@ -56,13 +56,14 @@ router.post('/login', async (req, res) =>{
   // first query the database to see if the user exists
   try {
     const foundChef = await LoginInfo.findOne({username: req.body.username});
-    console.log(foundChef);
 
     if(foundChef){
       // if the user exists use the bcrypt compare password
       if(bcrypt.compareSync(req.body.password, foundChef.password)){
         req.session.logged = true;
-        res.redirect('/chef');
+        console.log('line 64', foundChef);
+
+        res.redirect('/chef/' + foundChef._id);
       } else {
         req.session.message = 'Username or password is wrong';
         res.redirect('/newChef/login')
@@ -82,15 +83,15 @@ router.post('/login', async (req, res) =>{
 
 });
 
-// router.get('/logout', (req, res) =>{
-//   req.session.destroy((err) =>{
-//     if(err){
-//       res.send(err);
-//     } else {
-//       res.redirect('/chef/login');
-//     }
-//   })
-// })
+router.get('/logout', (req, res) =>{
+  req.session.destroy((err) =>{
+    if(err){
+      res.send(err);
+    } else {
+      res.redirect('/');
+    }
+  });
+});
 
 
 

@@ -28,16 +28,16 @@ app.use('/newChef', newChefController);
 
 // show all chefs displayed in the index
 app.get('/', async (req, res) => {
-  console.log('h1');
+
   try {
-    const foundChefs = await Chef.find({});
     res.render('index.ejs', {
-      chef: foundChefs
     });
+
   } catch(err){
     res.send(err);
   }
 });
+
 
 
 app.listen(3000,() =>{

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const chefSchema = new mongoose.Schema({
+  profileImage: String,
   name: String,
   years: String,
   description: String,
