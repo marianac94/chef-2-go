@@ -4,11 +4,11 @@ const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
 const session        = require('express-session');
 const Chef = require('./models/chef');
+
 require('./db/db');
 
-
 const chefController    = require('./controllers/chef');
-const userController    = require('./controllers/user');
+const companyController    = require('./controllers/company');
 const newChefController = require('./controllers/newChef');
 
 
@@ -22,7 +22,7 @@ app.use(session({
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 app.use('/chef', chefController);
-app.use('/user', chefController)
+app.use('/company', companyController)
 app.use('/newChef', newChefController);
 
 
