@@ -43,7 +43,7 @@ router.post('/register', async (req, res) => {
     req.session.message = '';
     // *************** work on it later as chef
     res.redirect('/chef/new');
-    // res.redirect('/chef');
+    // res.redirect('/chef');git
   } catch (err) {
     res.redirect('/newChef/login');
     console.log(err);
