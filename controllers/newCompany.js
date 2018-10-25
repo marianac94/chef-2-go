@@ -1,6 +1,6 @@
 const express  = require('express');
 const router   = express.Router();
-const LoginComp    = require('../models/loginComp');
+const Company    = require('../models/company');
 const bcrypt = require('bcrypt');
 
 const bodyParser     = require('body-parser');
@@ -12,7 +12,7 @@ const session        = require('express-session');
 router.get('/loginComp',(req, res) =>{
   const message = req.session.message;
   delete req.session.message;
-  res.render('newCompany/loginComp.ejs', {
+  res.render('company/loginComp.ejs', {
     message: message
   });
 });
@@ -28,21 +28,20 @@ router.post('/registerComp', async (req, res) => {
 
     // Create an object to put into our database into the User Model
     const companyEntry     = {};
-    companyEntry.name      = req.body.name;
-    companyEntry.address   = req.body.address;
-    companyEntry.phone     = req.body.phone;
+    companyEntry.companyName      = req.body.companyName;
     companyEntry.username  = req.body.username;
     companyEntry.password  = passwordHash;
 
-    const company = await LoginComp.create(companyEntry);
+    const company = await Company.create(companyEntry);
     console.log(company);
 
     // initializing the session
     // req.session.username = req.body.username;
     req.session.logged  = true;
     req.session.message = '';
+    req.session.companyId = company._id;
     // *************** work on it later as chef
-    res.redirect('/company/new');
+    res.redirect('/chef/show');
     // res.redirect('/chef');
   } catch (err) {
     res.redirect('/newCompany/registerComp');
