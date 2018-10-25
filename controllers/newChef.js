@@ -1,6 +1,5 @@
 const express  = require('express');
 const router   = express.Router();
-const LoginInfo    = require('../models/loginInfo');
 const bcrypt = require('bcrypt');
 
 const bodyParser     = require('body-parser');

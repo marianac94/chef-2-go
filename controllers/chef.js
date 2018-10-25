@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Chef = require('../models/chef');
-const login = require('../models/loginInfo');
 const Company = require('../models/company');
 
 
@@ -20,19 +19,19 @@ router.get('/', async (req, res) => {
 });
 
 
-// creating new chef
-router.get('/new', async (req, res) => {
-  try {
-
-    const allChef = await Chef.find();
-    res.render('chef/new.ejs', {
-      chef: allChef
-    });
-
-  } catch (err) {
-    res.send(err)
-  }
-});
+// // creating new chef
+// router.get('/new', async (req, res) => {
+//   try {
+//
+//     const allChef = await Chef.find();
+//     res.render('chef/new.ejs', {
+//       chef: allChef
+//     });
+//
+//   } catch (err) {
+//     res.send(err)
+//   }
+// });
 
 
 // find chef by id when login (giving an id the minute he/she register into the page)
@@ -91,7 +90,7 @@ router.put('/:id', (req, res)=>{
             Chef.findById(req.body.loginId, (err, newChef) => {
               newChef.login.push(updatelogin);
               newChef.save((err, savedNewChef) => {
-                res.redirect('/index');
+                res.redirect('/chef/:id');
             });
           });
         });
@@ -99,7 +98,7 @@ router.put('/:id', (req, res)=>{
         findChef.login.id(req.params.id).remove();
         findChef.login.push(updateChef);
         findChef.save((err, data) => {
-          res.redirect('/index');
+          res.redirect('/chef/:id');
         });
       }
     });
