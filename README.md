@@ -9,7 +9,7 @@
 
 
 ## Link to Trello (project)
-https://trello.com/b/4Q8ACNlA/unit-2-project-chef-to-go 
+https://trello.com/b/4Q8ACNlA/unit-2-project-chef-to-go
 
 
 
@@ -25,7 +25,7 @@ https://trello.com/b/4Q8ACNlA/unit-2-project-chef-to-go
 
 
 ## Example Routes
-![alt text]() ...
+![alt text](img/routes-01.png) 
 
 
 
