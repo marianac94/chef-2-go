@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h1>Fill the form to book chef <%=chef.name%></h1>
+
+      <a href="/">Home</a><br/>
+      <a href="/chef">Profiles</a><br/>
+
+        <form action="/company/summary" method="POST"><br/>
+
+        Number of people: </br>
+        <input type="radio" name="people" value="four">4-10</br>
+        <input type="radio" name="people" value="ten">10-25</br>
+        <input type="radio" name="people" value="fourthy">25-40</br>
+        <input type="radio" name="people" value="sixthy">40-60</br>
+        <input type="radio" name="people" value="hundred">100+</br>
+
+        <input type="text" name="address" placeholder="Address of event"><br/>
+
+        <input type="text" name="date" placeholder="Date of event"><br/>
+
+        <input type="text" name="hour" placeholder="Hour of event"><br/>
+
+      <br/><br/>
+
+    <h1>Payment Information</h1>
+
+        <input type="text" name="card" placeholder="Credit card number"><br/>
+        <input type="text" name="date" placeholder="Expiration date"><br/>
+        <input type="text" name="cvv" placeholder="CVV"><br/>
+
+      <br/><br/>
+
+    <h1>Any special comments for the chef?</h1>
+
+        <input type="text" name="text" placeholder="text in here"><br/>
+
+      <br/><br/>
+
+        <button type="submit">Book the chef now!</button>
+      </form>
+
+  </body>
+</html>

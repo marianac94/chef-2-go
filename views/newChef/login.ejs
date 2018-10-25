@@ -6,9 +6,7 @@
   </head>
   <body>
 
-    <% if(typeof message !== 'undefined'){ %>
-      <p><%=message%></p>
-    <% } %>
+    <a href="/">Go back Home</a> <br/>
 
     <h1>Login</h1>
     <form action="/newChef/login" method="POST">
@@ -16,6 +14,9 @@
       <input type="password" name="password" placeholder="password"> <br/>
       <button type="submit">sign in</button>
     </form>
+    <% if(typeof message !== 'undefined'){ %>
+      <p><%=message%></p>
+    <% } %>
 
     <h1>Register</h1>
     <form action="/newChef/register" method="POST"> <br/>

@@ -1,6 +1,6 @@
 const express  = require('express');
 const router   = express.Router();
-const LoginInfo    = require('../models/loginInfo');
+const LoginComp    = require('../models/loginComp');
 const bcrypt = require('bcrypt');
 
 const bodyParser     = require('body-parser');
@@ -9,16 +9,16 @@ const session        = require('express-session');
 
 
 
-router.get('/login',(req, res) =>{
+router.get('/loginComp',(req, res) =>{
   const message = req.session.message;
   delete req.session.message;
-  res.render('newChef/login.ejs', {
+  res.render('newCompany/loginComp.ejs', {
     message: message
   });
 });
 
 
-router.post('/register', async (req, res) => {
+router.post('/registerComp', async (req, res) => {
   try {
     // going to store our password in variable
     const password      = req.body.password;
@@ -27,50 +27,50 @@ router.post('/register', async (req, res) => {
     console.log(passwordHash);
 
     // Create an object to put into our database into the User Model
-    const chefEntry     = {};
-    chefEntry.name  = req.body.name;
-    chefEntry.address   = req.body.address;
-    chefEntry.phone     = req.body.phone;
-    chefEntry.username     = req.body.username;
-    chefEntry.password  = passwordHash;
+    const companyEntry     = {};
+    companyEntry.name      = req.body.name;
+    companyEntry.address   = req.body.address;
+    companyEntry.phone     = req.body.phone;
+    companyEntry.username  = req.body.username;
+    companyEntry.password  = passwordHash;
 
-    const chef = await LoginInfo.create(chefEntry);
-    console.log(chef);
+    const company = await LoginComp.create(companyEntry);
+    console.log(company);
 
     // initializing the session
     // req.session.username = req.body.username;
     req.session.logged  = true;
     req.session.message = '';
     // *************** work on it later as chef
-    res.redirect('/chef/new');
+    res.redirect('/company/new');
     // res.redirect('/chef');
   } catch (err) {
-    res.redirect('/newChef/login');
+    res.redirect('/newCompany/registerComp');
     console.log(err);
   }
 
 });
 
 
-router.post('/login', async (req, res) =>{
+router.post('/loginComp', async (req, res) =>{
   // first query the database to see if the user exists
   try {
-    const foundChef = await LoginInfo.findOne({username: req.body.username});
+    const foundCompany = await LoginComp.findOne({username: req.body.username});
 
-    if(foundChef){
+    if(foundCompany){
       // if the user exists use the bcrypt compare password
-      if(bcrypt.compareSync(req.body.password, foundChef.password)){
+      if(bcrypt.compareSync(req.body.password, foundCompany.password)){
         req.session.logged = true;
-        console.log('line 64', foundChef);
+        console.log('line 64', foundCompany);
 
-        res.redirect('/chef/' + foundChef._id);
+        res.redirect('/company/new');
       } else {
         req.session.message = 'Username or password is wrong';
-        res.redirect('/newChef/login')
+        res.redirect('/newCompany/loginComp')
       }
     } else {
       req.session.message = 'Username or password is wrong';
-      res.redirect('/newChef/login')
+      res.redirect('/newCompany/loginComp')
     }
 
   } catch (err) {
@@ -78,12 +78,12 @@ router.post('/login', async (req, res) =>{
     // res.status(err, body).send(body);
     // res.status(err);
     req.session.message = 'Username or password is wrong';
-    res.redirect('/newChef/login');
+    res.redirect('/newCompany/loginComp');
   }
 
 });
 
-router.get('/logout', (req, res) =>{
+router.get('/logoutComp', (req, res) =>{
   req.session.destroy((err) =>{
     if(err){
       res.send(err);

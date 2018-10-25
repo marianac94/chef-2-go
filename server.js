@@ -10,6 +10,7 @@ require('./db/db');
 const chefController    = require('./controllers/chef');
 const companyController    = require('./controllers/company');
 const newChefController = require('./controllers/newChef');
+const newCompanyController = require('./controllers/newCompany');
 
 
 app.use(session({
@@ -24,6 +25,7 @@ app.use(methodOverride('_method'));
 app.use('/chef', chefController);
 app.use('/company', companyController)
 app.use('/newChef', newChefController);
+app.use('/newCompany', newCompanyController);
 
 
 // show all chefs displayed in the index

@@ -2,11 +2,19 @@ const mongoose = require('mongoose');
 const Chef = require('./chef');
 
 const companySchema = new mongoose.Schema({
-  name: String,
+  companyName: String,
+  location: String,
+  phone: Number,
+  email: String,
+  password: String,
   people: Number,
+  address: String,
   date: String,
-  time: Number,
-  payment: Number,
+  hour: Number,
+  card: Number,
+  expiration: Number,
+  cvv: Number,
+  text: String,
   chef: [Chef.schema]
 });
 

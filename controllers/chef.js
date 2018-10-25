@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Chef = require('../models/chef');
-const login = require('../models/loginInfo')
+const login = require('../models/loginInfo');
+const Company = require('../models/company');
 
 
 // index route
@@ -34,26 +35,6 @@ router.get('/new', async (req, res) => {
 });
 
 
-// giving an id to the chef
-// router.get('/:id', async (req, res) => {
-//   try {
-//
-//     const findChef = await login.findById(req.params.id);
-//     // const findList = await Chef.findOne({'_id': req.params.id});
-//     //   console.log(findChef);
-//     //   console.log(findList);
-//     // const [findChef, findList] =
-//     // Promise.all([findChef, findList]);
-//
-//     res.render('chef/show.ejs', {
-//       login: findChef
-//       // chef: findList
-//     });
-//
-//   } catch (err) {
-//     res.send(err)
-//   }
-// });
 // find chef by id when login (giving an id the minute he/she register into the page)
 router.get('/:id', async (req, res) => {
   try {
@@ -98,18 +79,31 @@ router.get('/:id/edit', async (req, res) => {
   }
 });
 
+// still working on routes (not working)
+router.put('/:id', (req, res)=>{
+  Chef.findOneAndUpdate(req.params.id, req.body, {new: true}, (err, updateChef) => {
 
-// update the chef index page
-router.put('/:id', async (req, res) => {
-  try {
+    login.findOne({'chef._id': req.params.id}, (err, findChef) => {
 
-    const updateChef = await login.findOneAndUpdate(req.params.id, req.body);
-    console.log(updateChef, 'id works');
-    res.redirect('/chef/' + updateChef._id);
-
-  } catch (err) {
-    res.send(err)
-  }
+      if(findChef._id.toString() !== req.body.loginId){
+          findChef.login.id(req.params.id).remove()
+          findChef.save((err, savedFoundChef) => {
+            Chef.findById(req.body.loginId, (err, newChef) => {
+              newChef.login.push(updatelogin);
+              newChef.save((err, savedNewChef) => {
+                res.redirect('/index');
+            });
+          });
+        });
+      } else {
+        findChef.login.id(req.params.id).remove();
+        findChef.login.push(updateChef);
+        findChef.save((err, data) => {
+          res.redirect('/index');
+        });
+      }
+    });
+  });
 });
 
 
