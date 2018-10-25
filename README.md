@@ -1,6 +1,6 @@
 # Chef To Go
 
-**Chef To Go** is a full-stack application
+**Chef To Go** is a full-stack application ...
 
 
 ## Link to Site
@@ -25,7 +25,7 @@ https://trello.com/b/4Q8ACNlA/unit-2-project-chef-to-go
 
 
 ## Example Routes
-![alt text](img/routes-01.png) 
+![alt text](img/routes-01.png)
 
 
 
@@ -36,7 +36,9 @@ https://trello.com/b/4Q8ACNlA/unit-2-project-chef-to-go
 
 ## Further Challenges
 - To be able to add multiple menus in the chef route, for them to share with the companies.
+
 - Make the user experience easily for the companies join and book a chef.
+
 - Make the payment route work.
 
 

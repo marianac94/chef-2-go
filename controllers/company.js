@@ -50,7 +50,7 @@ router.get('/:id', async (req, res) => {
 
 
 // route to the summary of the order
-router.post('/', async (req, res) => {
+router.post('/summary', async (req, res) => {
   try {
 
     const createdCompany = await Company.create(req.body)

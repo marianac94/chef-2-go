@@ -1,7 +1,7 @@
 const express  = require('express');
 const router   = express.Router();
-const LoginComp    = require('../models/loginComp');
-const bcrypt = require('bcrypt');
+const Company  = require('../models/company');
+const bcrypt   = require('bcrypt');
 
 const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
@@ -34,7 +34,7 @@ router.post('/registerComp', async (req, res) => {
     companyEntry.username  = req.body.username;
     companyEntry.password  = passwordHash;
 
-    const company = await LoginComp.create(companyEntry);
+    const company = await Company.create(companyEntry);
     console.log(company);
 
     // initializing the session
