@@ -19,19 +19,19 @@ router.get('/', async (req, res) => {
 });
 
 
-// // creating new chef
-// router.get('/new', async (req, res) => {
-//   try {
-//
-//     const allChef = await Chef.find();
-//     res.render('chef/new.ejs', {
-//       chef: allChef
-//     });
-//
-//   } catch (err) {
-//     res.send(err)
-//   }
-// });
+// creating new chef
+router.get('/new', async (req, res) => {
+  try {
+
+    const allChef = await Chef.find();
+    res.render('chef/new.ejs', {
+      chef: allChef
+    });
+
+  } catch (err) {
+    res.send(err)
+  }
+});
 
 
 // find chef by id when login (giving an id the minute he/she register into the page)

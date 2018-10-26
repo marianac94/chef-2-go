@@ -7,10 +7,40 @@
   <body>
 
     <h1>Summary of order</h1>
+      <p>Thank you for your order!</p>
+
       <a href="/">Back Home</a> <br/>
       <a href="/newChef/logoutComp">Logout</a>
 
-      
+      <ul>
+
+        The event would be hosted by Chef:
+        <%=chef.name%>
+        <br/>
+
+        <%=chef.profileImage%>
+        <br/>
+
+        The number of people in the event:
+        <%=company.people%>
+        <br/>
+
+        The address of the event:
+        <%=company.address%>
+        <br/>
+
+        The date of the event:
+        <%=company.date%>
+        <br/>
+
+        The hour of the event:
+        <%=company.hour%>
+        <br/>
+
+        The method of payment:
+          Credit Card
+
+      </ul>
 
   </body>
 </html>
