@@ -28,13 +28,13 @@ router.get('/new', async (req, res) => {
       chef: allChef
     });
 
-  } catch (err) {
+   } catch (err) {
     res.send(err)
   }
 });
 
 
-// find chef by id when login (giving an id the minute he/she register into the page)
+// show specific chef by their id
 router.get('/:id', async (req, res) => {
   try {
 
@@ -79,12 +79,11 @@ router.get('/:id/edit', async (req, res) => {
 });
 
 
-
+// updates chef in their profile
 router.put('/:id', async (req, res)=>{
   try {
 
-    console.log(req.body);
-    const updateChef = await Chef.updateOne({ '_id' : req.params.id}, req.body)
+    const updateChef = await Chef.updateOne({ '_id': req.params.id}, req.body)
     res.redirect('/chef/' + req.params.id);
 
   } catch(err) {
@@ -93,8 +92,7 @@ router.put('/:id', async (req, res)=>{
 });
 
 
-
-// creating the delete route
+// delete route (not adding it for this project but it is working)
 router.delete('/:id', async (req, res) => {
   try {
 
@@ -105,8 +103,6 @@ router.delete('/:id', async (req, res) => {
     res.send(err)
   }
 });
-
-
 
 
 

@@ -1,12 +1,11 @@
-const express  = require('express');
-const router   = express.Router();
-const Company    = require('../models/company');
-const bcrypt = require('bcrypt');
+const express        = require('express');
+const router         = express.Router();
+const Company        = require('../models/company');
+const bcrypt         = require('bcrypt');
 
 const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
 const session        = require('express-session');
-
 
 
 router.get('/loginComp',(req, res) =>{
@@ -27,19 +26,19 @@ router.post('/registerComp', async (req, res) => {
     console.log(passwordHash);
 
     // Create an object to put into our database into the User Model
-    const companyEntry     = {};
-    companyEntry.companyName      = req.body.companyName;
-    companyEntry.username  = req.body.username;
-    companyEntry.password  = passwordHash;
+    const companyEntry          = {};
+    companyEntry.companyName    = req.body.companyName;
+    companyEntry.username       = req.body.username;
+    companyEntry.password       = passwordHash;
 
     const company = await Company.create(companyEntry);
     console.log(company);
 
     // initializing the session
     // req.session.username = req.body.username;
-    req.session.logged  = true;
-    req.session.message = '';
-    req.session.companyId = Company._id;
+    req.session.logged     = true;
+    req.session.message    = '';
+    req.session.companyId  = Company._id;
     // *************** work on it later as chef
     res.redirect('/company/new');
 

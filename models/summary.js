@@ -12,7 +12,4 @@ const summarySchema = new mongoose.Schema({
   comments: String
 });
 
-
-
-
 module.exports = mongoose.model('Summaryss', summarySchema);

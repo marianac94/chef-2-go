@@ -8,7 +8,6 @@ const methodOverride = require('method-override');
 const session        = require('express-session');
 
 
-
 router.get('/login',(req, res) =>{
   const message = req.session.message;
   delete req.session.message;
@@ -28,8 +27,8 @@ router.post('/register', async (req, res) => {
 
     // Create an object to put into our database into the User Model
     const chefEntry     = {};
-    chefEntry.name  = req.body.name;
-    chefEntry.username     = req.body.username;
+    chefEntry.name      = req.body.name;
+    chefEntry.username  = req.body.username;
     chefEntry.password  = passwordHash;
 
     const chef = await Login.create(chefEntry);
@@ -61,7 +60,7 @@ router.post('/login', async (req, res) =>{
         req.session.logged = true;
         console.log('line 64', foundChef);
           res.redirect('/chef/' + foundChef._id);
-          
+
       } else {
         req.session.message = 'Username or password is wrong';
         res.redirect('/newChef/login')
@@ -77,6 +76,7 @@ router.post('/login', async (req, res) =>{
   }
 
 });
+
 
 router.get('/logout', (req, res) =>{
   req.session.destroy((err) =>{

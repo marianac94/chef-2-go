@@ -19,15 +19,14 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/summary', async (req, res) => {
 
+router.get('/summary', async (req, res) => {
   try {
 
     const summaryFound = await Summary.find({});
     res.render('./company/summary.ejs', {
       summarys: summaryFound
     })
-
 
   } catch (err) {
       res.send(err);
@@ -48,6 +47,7 @@ router.get('/new', async (req, res) => {
     res.send(err)
   }
 });
+
 // route to the summary of the order
 router.post('/', async (req, res) => {
   try {
@@ -79,9 +79,17 @@ router.get('/:id', async (req, res) => {
 });
 
 
+// delete route
+router.delete('/:id', async (req, res) => {
+  try {
 
+    const deleteSummary = await Chef.findByIdAndRemove(req.params.id)
+    res.redirect('/company/summary');
 
-
+  } catch (err) {
+    res.send(err)
+  }
+});
 
 
 

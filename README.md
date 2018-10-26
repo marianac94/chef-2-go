@@ -1,6 +1,6 @@
 # Chef To Go
 
-**Chef To Go** is a full-stack application
+**Chef To Go** is a full-stack application that consists on having an easy way to book a freelance chef for corporate parties, meetings and events. In this app, both, the chef and the company can create an account and have full CRUD inside of it.
 
 
 ## Link to Site
@@ -25,19 +25,21 @@ https://trello.com/b/4Q8ACNlA/unit-2-project-chef-to-go
 
 
 ## Example Routes
-![alt text](img/routes-01.png) 
+![alt text](img/routes-01.png)
 
 
 
 ## Prototype Wireframe
-![alt text]() ...
+![alt text](img/wireframe.png)
 
 
 
 ## Further Challenges
 - To be able to add multiple menus in the chef route, for them to share with the companies.
 - Make the user experience easily for the companies join and book a chef.
+- Make the edit and delete buttons work on the summary of all the orders.
 - Make the payment route work.
+- Work in making the design more user friendly.
 
 
 
