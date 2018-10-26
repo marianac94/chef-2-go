@@ -30,7 +30,7 @@ https://trello.com/b/4Q8ACNlA/unit-2-project-chef-to-go
 
 
 ## Prototype Wireframe
-![alt text](images/wireframe.png)
+![alt text](images/wireframeImg.png)
 
 
 
