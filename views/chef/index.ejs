@@ -2,30 +2,93 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
     <title>Chef</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styleLogin.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
   </head>
   <body>
+    <style media="screen">
+    .navbar-dark {
+      background-color: #344581;
+      padding: 30px;
+    }
 
-    <a href="/">Home</a>
+    .navbar-dark a{
+      color: white;
+      font-weight: 400;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      float: right;
+      margin-right: 80px;
+    }
 
-  <ul>
+    .navbar-dark a:hover{
+      color: black;
+      font-weight: 600;
+      font-size: 18px;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 2px;
+      float: right;
+      margin-right: 80px;
+    }
+    body{
+      background-color: #F2F4FA;
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family: Montserrat;
+      margin: 0 auto;
+      padding: 0;
+    }
+    ul {
+      list-style: none;
+      margin-top: 40px;
+    }
+    h1{
+      font-weight: 600;
+      font-size: 30px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color:#344581;
+    }
+    .profileImg img {
+      border-radius: 8%;
+      height: 200px;
+    }
+    .logo {
+      height: 30px;
+    }
+    </style>
+
+    <main>
+      <nav class="navbar-dark">
+      <img class ="logo" src="../images/logo.png">
+      <a href="/">Home</a>
+    </nav>
+
+<br>
+
+  <ul class="row">
       <% for(let i = 0; i < chef.length; i++) { %>
-
-        <h1>Chef <%=chef[i].name%> Profile</h1><br/>
+<li class="col-4 list">
+        <h1>Chef <%=chef[i].name%></h1><br/>
+      <div class="profileImg">
         <img src="<%=chef[i].profileImage%>"/>
-        <br/><br/>
+      </div>
 
         <a href="/company/<%=chef[i].id%>">See profile</a>
-        <br/><br/>
-
     <%}%>
+    </li>
   </ul>
+  
+</main>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <!-- jQuery -->
+  <script src="js/jquery.js"></script>
 
+  <!-- Bootstrap Core JavaScript -->
+  <script src="js/bootstrap.min.js"></script>
   </body>
 </html>

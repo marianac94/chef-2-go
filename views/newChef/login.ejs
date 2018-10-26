@@ -2,35 +2,156 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styleLogin.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+  </head>
+  <body>
+    <style media="screen">
+      body{
+        background-color: #F2F4FA;
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: Montserrat;
+        margin: 0 auto;
+        padding: 0;
+      }
+
+      h1{
+        font-weight: 600;
+        font-size: 40px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .container {
+        margin: 0 auto;
+        margin-top: 100px;
+        padding: 100px;
+        border-radius: 18px;
+      }
+
+      .flex-center {
+        display: block;
+        align-items: center;
+        justify-content: center;
+        padding: 100px;
+        margin: 0 auto;
+      }
+
+      .btn  {
+        background-color: #344581;
+        color: white;
+        font-weight: 600;
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        width: 140px;
+        padding: 10px;
+        border-style: none;
+      }
+
+      .btn:hover {
+        background-color: #F2F4FA;
+        color: black;
+        border: 3px solid #344581;
+      }
+
+      .message {
+        color: #344581;
+        font-weight: 600;
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .navbar-dark {
+        background-color: #344581;
+        padding: 30px;
+      }
+
+      .navbar-dark a{
+        color: white;
+        font-weight: 400;
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        float: right;
+        margin-right: 80px;
+      }
+
+      .navbar-dark a:hover{
+        color: black;
+        font-weight: 600;
+        font-size: 18px;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 2px;
+        float: right;
+        margin-right: 80px;
+      }
+      .logo {
+        height: 30px;
+      }
+    </style>
+
   </head>
   <body>
 
-    <a href="/">Go back Home</a> <br/>
+    <nav class="navbar-dark">
+    <img class ="logo" src="../images/logo.png">
+    <a href="/">Home</a>
+    </nav>
 
-    <h1>Login</h1>
-    <form action="/newChef/login" method="POST">
-      <input type="text" name="username" placeholder="username"> <br/>
-      <input type="password" name="password" placeholder="password"> <br/>
-      <button type="submit">sign in</button>
-    </form>
-    <% if(typeof message !== 'undefined'){ %>
-      <p><%=message%></p>
-    <% } %>
+     <div class='container flex-center'>
 
-    <h1>Register</h1>
-    <form action="/newChef/register" method="POST"> <br/>
-      <input type="text" name="name" placeholder="name"> <br/>
-      <input type="text" name="username" placeholder="username"> <br/>
-      <input type="password" name="password" placeholder="password"> <br/>
-      <button type="submit">submit</button>
-    </form>
+       <h1>Login</h1>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+       <% if(typeof message !== 'undefined'){ %>
+         <p class="message"><%=message%></p>
+       <% } %>
+
+       <form action="/newChef/login" method="POST">
+         <label for="username">username</label> </br>
+         <input type="text" name="username"> </br>
+
+         <label for="password">password</label> </br>
+         <input type="password" name="password"> </br>
+
+         <br/>
+
+         <button type="input" class="btn btn-primary">Login</button>
+       </form>
+
+       <br/>
+       <br/>
+
+       <h1>Register</h1>
+       <form action="/newChef/register" method="POST">
+         <label for="name">Name of the chef</label> </br>
+         <input type="text" name="companyName"> </br>
+
+         <label for="username">username</label> </br>
+         <input type="text" name="username"> </br>
+
+         <label for="password">password</label> </br>
+         <input type="password" name="password"> </br>
+
+         <br/>
+
+         <button type="input" class="btn btn-primary">Register</button>
+       </form> </br> </br>
+
+     </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 
   </body>
 </html>

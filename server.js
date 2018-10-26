@@ -13,7 +13,7 @@ const companyController    = require('./controllers/company');
 const newChefController    = require('./controllers/newChef');
 const newCompanyController = require('./controllers/newCompany');
 
-
+app.use(express.static('public'));
 app.use(session({
   secret: 'This is some random secret string',
   resave: false,
@@ -27,6 +27,8 @@ app.use('/chef', chefController);
 app.use('/company', companyController)
 app.use('/newChef', newChefController);
 app.use('/newCompany', newCompanyController);
+
+// connect public folder to use css and bootstrap
 
 
 // show all chefs displayed in the index
