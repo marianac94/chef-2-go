@@ -28,17 +28,17 @@ router.get('/new', async (req, res) => {
       chef: allChef
     });
 
-  } catch (err) {
+   } catch (err) {
     res.send(err)
   }
 });
 
 
-// find chef by id when login (giving an id the minute he/she register into the page)
+// show specific chef by their id
 router.get('/:id', async (req, res) => {
   try {
 
-    const findChef = await login.findById(req.params.id);
+    const findChef = await Chef.findById(req.params.id);
     res.render('chef/show.ejs', {
       chef: findChef
     });
@@ -67,7 +67,7 @@ router.post('/', async (req, res) => {
 router.get('/:id/edit', async (req, res) => {
   try {
 
-    const findChef = await login.findById(req.params.id);
+    const findChef = await Chef.findById(req.params.id);
     console.log(findChef, 'edit works');
     res.render('chef/edit.ejs', {
       chef: findChef
@@ -78,35 +78,21 @@ router.get('/:id/edit', async (req, res) => {
   }
 });
 
-// still working on routes (not working)
-router.put('/:id', (req, res)=>{
-  Chef.findOneAndUpdate(req.params.id, req.body, {new: true}, (err, updateChef) => {
 
-    login.findOne({'chef._id': req.params.id}, (err, findChef) => {
+// updates chef in their profile
+router.put('/:id', async (req, res)=>{
+  try {
 
-      if(findChef._id.toString() !== req.body.loginId){
-          findChef.login.id(req.params.id).remove()
-          findChef.save((err, savedFoundChef) => {
-            Chef.findById(req.body.loginId, (err, newChef) => {
-              newChef.login.push(updatelogin);
-              newChef.save((err, savedNewChef) => {
-                res.redirect('/chef/:id');
-            });
-          });
-        });
-      } else {
-        findChef.login.id(req.params.id).remove();
-        findChef.login.push(updateChef);
-        findChef.save((err, data) => {
-          res.redirect('/chef/:id');
-        });
-      }
-    });
-  });
+    const updateChef = await Chef.updateOne({ '_id': req.params.id}, req.body)
+    res.redirect('/chef/' + req.params.id);
+
+  } catch(err) {
+    res.send(err)
+  }
 });
 
 
-// creating the delete route
+// delete route (not adding it for this project but it is working)
 router.delete('/:id', async (req, res) => {
   try {
 
@@ -117,8 +103,6 @@ router.delete('/:id', async (req, res) => {
     res.send(err)
   }
 });
-
-
 
 
 

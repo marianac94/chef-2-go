@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const connectionString = 'mongodb://localhost/chef4';
+const connectionString = 'mongodb://localhost/cheftogo2';
 
 mongoose.connect(connectionString, {
   useNewUrlParser: true
 });
 
 mongoose.connection.on('connected', () => {
-  console.log(`Mongoose connected to ${connectionString}`);
+  console.log('Mongoose connected to connectionString');
 });
 
  mongoose.connection.on('disconnected', () => {

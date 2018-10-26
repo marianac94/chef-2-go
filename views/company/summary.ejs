@@ -2,45 +2,32 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Summary</title>
   </head>
   <body>
 
-    <h1>Summary of order</h1>
-      <p>Thank you for your order!</p>
-
+    <h1>Summary of all the orders</h1>
       <a href="/">Back Home</a> <br/>
-      <a href="/newChef/logoutComp">Logout</a>
+      <a href="/">Logout</a> </br></br>
 
-      <ul>
+    <%for ( let i = 0; i < summarys.length; i++ ) {%>
+      <h3><%=summarys[i].companyName%></h3></br>
+      People attending event: <%=summarys[i].people%></br>
+      Day: <%=summarys[i].date%></br>
+      Hour: <%=summarys[i].hour%></br>
+      Special comments: <%=summarys[i].comments%></br>
 
-        The event would be hosted by Chef:
-        <%=chef.name%>
-        <br/>
+        <input type="submit" value="Edit event">
+        <input type="submit" value="Delete event">
 
-        <%=chef.profileImage%>
-        <br/>
 
-        The number of people in the event:
-        <%=company.people%>
-        <br/>
+    <%}%>
 
-        The address of the event:
-        <%=company.address%>
-        <br/>
-
-        The date of the event:
-        <%=company.date%>
-        <br/>
-
-        The hour of the event:
-        <%=company.hour%>
-        <br/>
-
-        The method of payment:
-          Credit Card
-
-      </ul>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
   </body>
 </html>

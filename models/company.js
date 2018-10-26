@@ -3,14 +3,8 @@ const Chef = require('./chef');
 
 const companySchema = new mongoose.Schema({
   companyName: String,
-  username: {
-    type: String,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
+  username: String,
+  password: String,
   chef: [Chef.schema]
 });
 

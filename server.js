@@ -3,13 +3,14 @@ const app            = express();
 const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
 const session        = require('express-session');
-const Chef = require('./models/chef');
+const Chef           = require('./models/chef');
+const Company        = require('./models/company');
 
 require('./db/db');
 
-const chefController    = require('./controllers/chef');
+const chefController       = require('./controllers/chef');
 const companyController    = require('./controllers/company');
-const newChefController = require('./controllers/newChef');
+const newChefController    = require('./controllers/newChef');
 const newCompanyController = require('./controllers/newCompany');
 
 
@@ -40,6 +41,16 @@ app.get('/', async (req, res) => {
   }
 });
 
+
+app.get('/newCompany/logoutComp', (req, res) =>{
+  req.session.destroy((err) =>{
+    if(err){
+      res.send(err);
+    } else {
+      res.redirect('/');
+    }
+  });
+});
 
 
 app.listen(3000,() =>{
