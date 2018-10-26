@@ -1,5 +1,6 @@
 const express  = require('express');
 const router   = express.Router();
+const Login = require('../models/chef');
 const bcrypt = require('bcrypt');
 
 const bodyParser     = require('body-parser');
@@ -28,12 +29,10 @@ router.post('/register', async (req, res) => {
     // Create an object to put into our database into the User Model
     const chefEntry     = {};
     chefEntry.name  = req.body.name;
-    chefEntry.address   = req.body.address;
-    chefEntry.phone     = req.body.phone;
     chefEntry.username     = req.body.username;
     chefEntry.password  = passwordHash;
 
-    const chef = await LoginInfo.create(chefEntry);
+    const chef = await Login.create(chefEntry);
     console.log(chef);
 
     // initializing the session
@@ -54,15 +53,15 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) =>{
   // first query the database to see if the user exists
   try {
-    const foundChef = await LoginInfo.findOne({username: req.body.username});
+    const foundChef = await Login.findOne({username: req.body.username});
 
     if(foundChef){
       // if the user exists use the bcrypt compare password
       if(bcrypt.compareSync(req.body.password, foundChef.password)){
         req.session.logged = true;
         console.log('line 64', foundChef);
-
-        res.redirect('/chef/' + foundChef._id);
+          res.redirect('/chef/' + foundChef._id);
+          
       } else {
         req.session.message = 'Username or password is wrong';
         res.redirect('/newChef/login')
@@ -73,9 +72,6 @@ router.post('/login', async (req, res) =>{
     }
 
   } catch (err) {
-    // res.send(err);
-    // res.status(err, body).send(body);
-    // res.status(err);
     req.session.message = 'Username or password is wrong';
     res.redirect('/newChef/login');
   }

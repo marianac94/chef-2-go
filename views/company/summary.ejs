@@ -8,9 +8,13 @@
 
     <h1>Summary of order</h1>
       <a href="/">Back Home</a> <br/>
-      <a href="/newChef/logoutComp">Logout</a>
+      <a href="/">Logout</a> </br> </br>
 
-      
+<%    for ( let i = 0; i < summarys.length; i++ ) { %>
+  <%=    summarys[i].companyName  %> </br>
+  <%  } %>
+
+
 
   </body>
 </html>

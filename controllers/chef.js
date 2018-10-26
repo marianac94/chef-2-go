@@ -19,26 +19,26 @@ router.get('/', async (req, res) => {
 });
 
 
-// // creating new chef
-// router.get('/new', async (req, res) => {
-//   try {
-//
-//     const allChef = await Chef.find();
-//     res.render('chef/new.ejs', {
-//       chef: allChef
-//     });
-//
-//   } catch (err) {
-//     res.send(err)
-//   }
-// });
+// creating new chef
+router.get('/new', async (req, res) => {
+  try {
+
+    const allChef = await Chef.find();
+    res.render('chef/new.ejs', {
+      chef: allChef
+    });
+
+  } catch (err) {
+    res.send(err)
+  }
+});
 
 
 // find chef by id when login (giving an id the minute he/she register into the page)
 router.get('/:id', async (req, res) => {
   try {
 
-    const findChef = await login.findById(req.params.id);
+    const findChef = await Chef.findById(req.params.id);
     res.render('chef/show.ejs', {
       chef: findChef
     });
@@ -67,7 +67,7 @@ router.post('/', async (req, res) => {
 router.get('/:id/edit', async (req, res) => {
   try {
 
-    const findChef = await login.findById(req.params.id);
+    const findChef = await Chef.findById(req.params.id);
     console.log(findChef, 'edit works');
     res.render('chef/edit.ejs', {
       chef: findChef
@@ -78,32 +78,20 @@ router.get('/:id/edit', async (req, res) => {
   }
 });
 
-// still working on routes (not working)
-router.put('/:id', (req, res)=>{
-  Chef.findOneAndUpdate(req.params.id, req.body, {new: true}, (err, updateChef) => {
 
-    login.findOne({'chef._id': req.params.id}, (err, findChef) => {
 
-      if(findChef._id.toString() !== req.body.loginId){
-          findChef.login.id(req.params.id).remove()
-          findChef.save((err, savedFoundChef) => {
-            Chef.findById(req.body.loginId, (err, newChef) => {
-              newChef.login.push(updatelogin);
-              newChef.save((err, savedNewChef) => {
-                res.redirect('/chef/:id');
-            });
-          });
-        });
-      } else {
-        findChef.login.id(req.params.id).remove();
-        findChef.login.push(updateChef);
-        findChef.save((err, data) => {
-          res.redirect('/chef/:id');
-        });
-      }
-    });
-  });
+router.put('/:id', async (req, res)=>{
+  try {
+
+    console.log(req.body);
+    const updateChef = await Chef.updateOne({ '_id' : req.params.id}, req.body)
+    res.redirect('/chef/' + req.params.id);
+
+  } catch(err) {
+    res.send(err)
+  }
 });
+
 
 
 // creating the delete route

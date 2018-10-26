@@ -6,7 +6,7 @@ mongoose.connect(connectionString, {
 });
 
 mongoose.connection.on('connected', () => {
-  console.log(`Mongoose connected to ${connectionString}`);
+  console.log('Mongoose connected to connectionString');
 });
 
  mongoose.connection.on('disconnected', () => {

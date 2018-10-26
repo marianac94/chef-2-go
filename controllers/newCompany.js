@@ -12,7 +12,7 @@ const session        = require('express-session');
 router.get('/loginComp',(req, res) =>{
   const message = req.session.message;
   delete req.session.message;
-  res.render('company/loginComp.ejs', {
+  res.render('newCompany/loginComp.ejs', {
     message: message
   });
 });
@@ -39,12 +39,12 @@ router.post('/registerComp', async (req, res) => {
     // req.session.username = req.body.username;
     req.session.logged  = true;
     req.session.message = '';
-    req.session.companyId = company._id;
+    req.session.companyId = Company._id;
     // *************** work on it later as chef
-    res.redirect('/chef/show');
-    // res.redirect('/chef');
+    res.redirect('/company/new');
+
   } catch (err) {
-    res.redirect('/newCompany/registerComp');
+    // res.redirect('/newCompany/loginComp');
     console.log(err);
   }
 
@@ -60,9 +60,8 @@ router.post('/loginComp', async (req, res) =>{
       // if the user exists use the bcrypt compare password
       if(bcrypt.compareSync(req.body.password, foundCompany.password)){
         req.session.logged = true;
-        console.log('line 64', foundCompany);
+          res.redirect('/chef');
 
-        res.redirect('/company/new');
       } else {
         req.session.message = 'Username or password is wrong';
         res.redirect('/newCompany/loginComp')
@@ -73,24 +72,12 @@ router.post('/loginComp', async (req, res) =>{
     }
 
   } catch (err) {
-    // res.send(err);
-    // res.status(err, body).send(body);
-    // res.status(err);
     req.session.message = 'Username or password is wrong';
     res.redirect('/newCompany/loginComp');
   }
 
 });
 
-router.get('/logoutComp', (req, res) =>{
-  req.session.destroy((err) =>{
-    if(err){
-      res.send(err);
-    } else {
-      res.redirect('/');
-    }
-  });
-});
 
 
 

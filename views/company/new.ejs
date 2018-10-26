@@ -11,8 +11,8 @@
       <a href="/">Home</a><br/>
       <a href="/chef">Profiles</a><br/>
 
-        <form action="/company/summary" method="POST"><br/>
-
+        <form action="/company" method="POST"><br/>
+        <input type="text" name="companyName" placeholder="Company Name"><br/>
         Number of people: </br>
         <input type="radio" name="people" value="four">4-10</br>
         <input type="radio" name="people" value="ten">10-25</br>
@@ -30,17 +30,17 @@
 
     <h1>Payment Information</h1>
 
-        <input type="text" name="card" placeholder="Credit card number"><br/>
-        <input type="text" name="date" placeholder="Expiration date"><br/>
-        <input type="text" name="cvv" placeholder="CVV"><br/>
+        <input type="text" name="card" placeholder="Credit card number"> <br/>
+        <input type="text" name="cardDate" placeholder="Expiration date"> <br/>
+        <input type="text" name="cvv" placeholder="CVV"> <br/>
 
       <br/><br/>
 
     <h1>Any special comments for the chef?</h1>
 
-        <input type="text" name="text" placeholder="text in here"><br/>
+        <input type="text" name="comments" placeholder="text in here"> <br/>
 
-      <br/><br/>
+      <br/> <br/>
 
         <button type="submit">Book the chef now!</button>
       </form>

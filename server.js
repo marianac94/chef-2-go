@@ -4,6 +4,7 @@ const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
 const session        = require('express-session');
 const Chef = require('./models/chef');
+const Company    = require('./models/company');
 
 require('./db/db');
 
@@ -40,6 +41,15 @@ app.get('/', async (req, res) => {
   }
 });
 
+app.get('/newCompany/logoutComp', (req, res) =>{
+  req.session.destroy((err) =>{
+    if(err){
+      res.send(err);
+    } else {
+      res.redirect('/');
+    }
+  });
+});
 
 
 app.listen(3000,() =>{
