@@ -25,12 +25,12 @@ https://trello.com/b/4Q8ACNlA/unit-2-project-chef-to-go
 
 
 ## Example Routes
-![alt text](images/routes-01.png)
+![alt text](public/images/routes-01.png)
 
 
 
 ## Prototype Wireframe
-![alt text](images/wireframeImg.png)
+![alt text](public/images/wireframeImg.png)
 
 
 
